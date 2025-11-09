@@ -22,8 +22,8 @@ public class LoginUserTests extends BaseTest {
         user.setPassword(RandomStringUtils.randomAlphabetic(12));
         user.setName(RandomStringUtils.randomAlphabetic(12));
         accessToken = userSteps.createUser(user)
-                 .extract()
-                 .path("accessToken");
+                .extract()
+                .path("accessToken");
 
     }
 
@@ -41,7 +41,7 @@ public class LoginUserTests extends BaseTest {
     //ошибка при вводе несуществующего пароля
     @Test
     public void shouldNotLoginWithWrongPasswordTest() {
-        user.setPassword("whdehgcgshe@mail.ru");
+        user.setPassword(RandomStringUtils.randomAlphabetic(8));
         userSteps.loginUser(user)
                 .statusCode(401)
                 .body("message", containsString("email or password are incorrect"));
@@ -50,7 +50,7 @@ public class LoginUserTests extends BaseTest {
     //ошибка при вводе несуществующего емейла
     @Test
     public void shouldNotLoginWithWrongEmailTest() {
-        user.setEmail("fkjhrigfrgdu@mail.ru");
+        user.setEmail(RandomStringUtils.randomAlphabetic(8) + "@mail.ru");
         userSteps.loginUser(user)
                 .statusCode(401)
                 .body("message", containsString("email or password are incorrect"));

@@ -78,9 +78,8 @@ public class OrderTests extends BaseTest {
                 .post(ORDER)
                 .then()
                 .statusCode(400)
-                .body("success", is(false));
+                .body("message", is("Ingredient ids must be provided"));
     }
-
 
     @Test
     public void shouldNotCreateOrderWithoutIngredientsWithoutAuth() {
@@ -94,7 +93,7 @@ public class OrderTests extends BaseTest {
                 .post(ORDER)
                 .then()
                 .statusCode(400)
-                .body("success", is(false));
+                .body("message", is("Ingredient ids must be provided"));
     }
 
     @Test

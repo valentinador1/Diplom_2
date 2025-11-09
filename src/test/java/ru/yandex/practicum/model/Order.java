@@ -1,6 +1,8 @@
 package ru.yandex.practicum.model;
 
 
+import io.qameta.allure.Step;
+
 import java.util.List;
 
 public class Order {
@@ -11,6 +13,8 @@ public class Order {
         return ingredients;
     }
 
+
+    @Step
     public void setIngredients(List<String> ingredients) {
         this.ingredients = ingredients;
     }
