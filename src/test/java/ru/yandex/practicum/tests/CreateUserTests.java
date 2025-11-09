@@ -55,7 +55,7 @@ public class CreateUserTests extends BaseTest {
     }
 
 
-        //нельзя создать пользователя без емейла
+    //нельзя создать пользователя без емейла
     @Test
     public void shouldNotCreateWithoutEmailTest() {
         user.setEmail(null);
@@ -77,6 +77,16 @@ public class CreateUserTests extends BaseTest {
                 .path("accessToken");
     }
 
+    //нельзя создать пользователя  без имени
+    @Test
+    public void shouldNotCreateWithoutUserNameTest() {
+        user.setName(null);
+        accessToken = userSteps.createUser(user) //accessToken на случай непредвиденного создания пользователя
+                .statusCode(403)
+                .body("message", containsString("Email, password and name are required fields"))
+                .extract()
+                .path("accessToken");
+    }
 
     @After
     public void tearDown() {
